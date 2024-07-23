@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "D:/E/Courses/ESP32/Espressif-IDF/00-Blink/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}
