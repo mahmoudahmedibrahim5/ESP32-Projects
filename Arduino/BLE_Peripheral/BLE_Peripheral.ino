@@ -25,7 +25,9 @@
 #include <BLE2902.h>
 
 BLEServer* pServer = NULL;
+BLEService *pService = NULL;
 BLECharacteristic* pCharacteristic = NULL;
+
 bool deviceConnected = false;
 bool oldDeviceConnected = false;
 uint32_t value = 0;
@@ -60,20 +62,16 @@ void setup() {
   pServer->setCallbacks(new MyServerCallbacks());
 
   // Create the BLE Service
-  BLEService *pService = pServer->createService(SERVICE_UUID);
+  pService = pServer->createService(SERVICE_UUID);
 
   // Create a BLE Characteristic
-  pCharacteristic = pService->createCharacteristic(
-                      CHARACTERISTIC_UUID,
+  pCharacteristic = pService->createCharacteristic(CHARACTERISTIC_UUID,
                       BLECharacteristic::PROPERTY_READ   |
                       BLECharacteristic::PROPERTY_WRITE  |
-                      BLECharacteristic::PROPERTY_NOTIFY |
-                      BLECharacteristic::PROPERTY_INDICATE
+                      BLECharacteristic::PROPERTY_NOTIFY 
                     );
 
-  // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.descriptor.gatt.client_characteristic_configuration.xml
-  // Create a BLE Descriptor
-  pCharacteristic->addDescriptor(new BLE2902());
+  
 
   // Start the service
   pService->start();
@@ -83,19 +81,18 @@ void setup() {
   pAdvertising->addServiceUUID(SERVICE_UUID);
   pAdvertising->setScanResponse(false);
   pAdvertising->setMinPreferred(0x0);  // set value to 0x00 to not advertise this parameter
-  BLEDevice::startAdvertising();
+
+  pServer->startAdvertising();
   Serial.println("Waiting a client connection to notify...");
 }
 
 void loop() {
     // notify changed value
     if (deviceConnected) {
-        //pCharacteristic->setValue((uint8_t*)&value, 4);
-        std::string message = "Hello Word";
-        pCharacteristic->setValue(message);
+        pCharacteristic->setValue((uint8_t*)&value, 4);
         pCharacteristic->notify();
         value++;
-        delay(500); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+        delay(1000); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
     }
     // disconnecting
     if (!deviceConnected && oldDeviceConnected) {
